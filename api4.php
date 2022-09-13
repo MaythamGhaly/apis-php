@@ -1,13 +1,10 @@
 <?php
 
-$todaydate = $_GET;
-$christmasDay = date("Y") . "-12-25";
-if(date("m") == 12 && date("d") > 25){
-    $christmasDay = (date("Y") + 1) . "-12-25";
-}
-$christmasDay = new DateTime($christmasDay);
-$result = $today->diff($christmasDay);
+$todaydate= date_create($_GET["todaydate"]);
+$christmasdate= date_create('25-12-2022');
 
-$data=["result"=>$result];
+$result=date_diff($todaydate, $christmasdate);
+
+$data=["result"=>$result->format('%R%a days')];
 echo json_encode($data);;
 ?>
